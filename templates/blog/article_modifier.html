@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Modifier - {{ article.titre }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">Modifier l'article: {{ article.titre }}</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.titre.id_for_label }}" class="form-label fw-bold">Titre de l'article</label>
+                        {{ form.titre }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.auteur.id_for_label }}" class="form-label fw-bold">Auteur</label>
+                        {{ form.auteur }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">Description / Contenu</label>
+                        {{ form.description }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.image.id_for_label }}" class="form-label fw-bold">Image de l'article</label>
+                        {% if article.image %}
+                            <div class="mb-2">
+                                <img src="{{ article.image.url }}" alt="Current Image" width="120" class="img-thumbnail">
+                            </div>
+                        {% endif %}
+                        {{ form.image }}
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'article_detail' article.pk %}" class="btn btn-secondary">Annuler</a>
+                        <button type="submit" class="btn btn-warning">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

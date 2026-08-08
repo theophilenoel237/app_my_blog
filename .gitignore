@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+ENV/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database (optional: exclude local test data)
+*.sqlite3
+
+# Uploaded media files
+media/
+
+# Environment files
+.env
+
+# IDE / Editor files
+.vscode/
+.idea/
